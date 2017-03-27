@@ -3,16 +3,10 @@
 Route::get('/', 		'HomeController@index');
 Route::get('contact', 	'ContactController@index');
 Route::get('about', 	'AboutController@index');
-Route::get('shop', 		'ShopController@index');
 
-
-
-
-
-
-
-
+Route::resource('shop', 'ShopController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::resource('account', 'AccountController');
+Route::resource('blog', 'BlogController');
