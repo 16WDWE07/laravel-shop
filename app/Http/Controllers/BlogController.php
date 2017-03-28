@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Post;
 use Carbon;
+use App\Comment;
 
 
 class BlogController extends Controller
@@ -127,4 +128,22 @@ class BlogController extends Controller
     {
         //
     }
+
+    public function newComment(Request $request) {
+        // Validation
+        $this->validate($request, [
+            'comment' => 'required|min:20|max:1000',
+            'posts_id'=> 'required|exists:posts,id'
+        ]);
+
+        $data = $request->all();
+        $data['users_id'] = \Auth::user()->id;
+
+        // Create new comment
+        $comment = Comment::create($data);
+        
+        // Redirect back to post
+        return redirect('/blog/'.$request->posts_id);
+    }
+
 }

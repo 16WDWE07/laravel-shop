@@ -7,7 +7,11 @@
 @foreach($allPosts as $post)
 
 <article>
-	<h1>{{ $post->title }}</h1>
+	<h1>
+		<a href="/blog/{{ $post->id }}">
+			{{ $post->title }}
+		</a>
+	</h1>
 	<small>Written {{ Carbon::parse($post->created_at)->diffForHumans() }}</small>
 	<small>Written by {{ $post->users->name }}</small>
 </article>

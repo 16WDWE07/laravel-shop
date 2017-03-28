@@ -9,4 +9,6 @@ Route::resource('shop', 'ShopController');
 Auth::routes();
 
 Route::resource('account', 'AccountController');
+
 Route::resource('blog', 'BlogController');
+Route::post('blog/newcomment', 'BlogController@newComment');
